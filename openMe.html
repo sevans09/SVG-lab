@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script lang="javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script lang="javascript" src="js/d3.min.js"></script>
+	<style>
+		html, body {
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	
+	<script>
+		var dimension = 500;
+
+		var svg = d3.select('body').append('svg')
+			.attr('width', dimension)
+			.attr('height', dimension)
+			.style('background-color', 'black');
+
+		// YOUR CODE SHOULD START HERE
+		/*
+		 * Name: Sook-Hee Evans
+		 * Word: Spill
+		 */
+
+		svg.style('background-color', '#b3d9ff');
+
+		svg.append("circle")
+			.attr("id", "circle1")
+			.attr("cx", dimension/1.5)
+			.attr("cy", dimension/2)
+			.attr("r", 45)
+			.attr("fill", "#ffffcc");
+
+		svg.append("circle")
+			.attr("id", "circle2")
+			.attr("cx", dimension/2)
+			.attr("cy", dimension/3)
+			.attr("r", 45)
+			.attr("fill", "#ffffcc");
+		
+		svg.append("circle")
+			.attr("id", "circle3")
+			.attr("cx", dimension/3)
+			.attr("cy", dimension/2)
+			.attr("r", 45)
+			.attr("fill", "#ffffcc");
+
+		svg.append("circle")
+			.attr("id", "circle4")
+			.attr("cx", dimension/2)
+			.attr("cy", dimension/1.5)
+			.attr("r", 45)
+			.attr("fill", "#ffffcc");
+
+		svg.append("circle")
+			.attr("id", "center")
+			.attr("cx", dimension/2)
+			.attr("cy", dimension/2)
+			.attr("r", 68)
+			.attr("fill", "pink")
+			.attr("stroke", "black")
+			.attr("stroke-width", "1");
+
+		$( "#center" ).click(function() {
+			var rect = $('#circle2');
+
+			if($('#circle2').css('background-color')=='#00cc00') {
+				$('#circle2').css('background-color', '#336699');
+			}
+			else {
+				$('#circle2').css('background-color', 'black');
+   			}
+
+        	rect.css('fill',"#ffff4d");
+			var rect = $('#circle1');
+        	rect.css('fill',"#ffff4d");
+			var rect = $('#circle3');
+        	rect.css('fill',"#ffff4d");
+			var rect = $('#circle4');
+        	rect.css('fill',"#ffff4d");
+
+			d3.select("svg").on("click", function() {
+			rect
+			.transition()
+			.delay(1500)
+			.duration(1000)
+			.attr("points", cx1+","+cy1+" "+(cx1-8)+","+(cy1-14)+" "+(cx1-10)+","+(cy1-32)+" "+cx1+","+(cy1-42)+" "+(cx1+12)+","+(cy1-38)+" "+(cx1+12)+","+(cy1-18)+" "+cx1+","+cy1); 
+			)};
+
+			svg.append("circle")
+				.attr("id", "circle5")
+				.attr("cx", dimension/2.75)
+				.attr("cy", dimension/1.6)
+				.attr("r", 55)
+				.attr("fill", "#ffffcc")
+				.attr("z-index", 100);
+
+			svg.append("circle")
+				.attr("id", "circle6")
+				.attr("cx", dimension/1.6)
+				.attr("cy", dimension/2.75)
+				.attr("r", 55)
+				.attr("fill", "#ffffcc")
+				.attr("z-index", 100);
+			
+			svg.append("circle")
+				.attr("id", "circle7")
+				.attr("cx", dimension/2.75)
+				.attr("cy", dimension/1.6)
+				.attr("r", 55)
+				.attr("fill", "#ffffcc")
+				.attr("z-index", 100);
+
+			svg.append("circle")
+				.attr("id", "circle7")
+				.attr("cx", dimension/2.75)
+				.attr("cy", dimension/2.75)
+				.attr("r", 55)
+				.attr("fill", "#ffffcc")
+				.attr("z-index", 100);
+			
+			svg.append("circle")
+				.attr("id", "circle8")
+				.attr("cx", dimension/1.6)
+				.attr("cy", dimension/1.6)
+				.attr("r", 55)
+				.attr("fill", "#ffffcc")
+				.attr("z-index", 100);
+
+			svg.append("circle")
+				.attr("id", "center")
+				.attr("cx", dimension/2)
+				.attr("cy", dimension/2)
+				.attr("r", 68)
+				.attr("fill", "pink")
+				.attr("stroke", "black")
+				.attr("stroke-width", "1")
+				// .transform("translate", "width/2");
+			
+			var seeds = svg.selectAll("circle");
+			seeds.attr("transform", "translate(" + [dimension / 4, dimension / 4] + ")rotate(" + 50 / 100 % 360 + ")");
+			console.log("transforming");
+		});
+
+
+		// YOUR CODE SHOULD END HERE
+	</script>
+</body>
+</html>

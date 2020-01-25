@@ -18,132 +18,144 @@
 		var svg = d3.select('body').append('svg')
 			.attr('width', dimension)
 			.attr('height', dimension)
-			.style('background-color', 'black');
+			.style('background-color', '#d9d9d9');
 
 		// YOUR CODE SHOULD START HERE
 		/*
 		 * Name: Sook-Hee Evans
-		 * Word: Spill
+		 * Word: Conceal
 		 */
 
-		svg.style('background-color', '#b3d9ff');
+        var radialGradient = svg.append("defs")
+			.append("radialGradient")
+	    	.attr("id", "radial-gradient");
 
-		svg.append("circle")
-			.attr("id", "circle1")
-			.attr("cx", dimension/1.5)
-			.attr("cy", dimension/2)
-			.attr("r", 45)
-			.attr("fill", "#ffffcc");
+		radialGradient.append("stop")
+		    .attr("offset", "0%")
+		    .attr("stop-color", "#ff8533");
 
-		svg.append("circle")
-			.attr("id", "circle2")
+		radialGradient.append("stop")
+		    .attr("offset", "100%")
+		    .attr("stop-color", "#ffff00");
+
+
+        var eclipseGradient = svg.append("defs")
+			.append("radialGradient")
+	    	.attr("id", "eclipse-gradient");
+
+		eclipseGradient.append("stop")
+		    .attr("offset", "0%")
+		    .attr("stop-color", "#424242");
+
+		eclipseGradient.append("stop")
+		    .attr("offset", "100%")
+		    .attr("stop-color", "#262626");
+
+
+        svg.append("circle")
+            .style("fill", "url(#radial-gradient")
+            .attr("id", "sun")
+            .attr("cx", dimension/2)
+			.attr("cy", dimension+10)
+        	.transition()
+		    .duration(3000)
 			.attr("cx", dimension/2)
-			.attr("cy", dimension/3)
-			.attr("r", 45)
-			.attr("fill", "#ffffcc");
-		
-		svg.append("circle")
-			.attr("id", "circle3")
-			.attr("cx", dimension/3)
 			.attr("cy", dimension/2)
-			.attr("r", 45)
-			.attr("fill", "#ffffcc");
+			.attr("r", dimension/5);
 
-		svg.append("circle")
-			.attr("id", "circle4")
-			.attr("cx", dimension/2)
-			.attr("cy", dimension/1.5)
-			.attr("r", 45)
-			.attr("fill", "#ffffcc");
-
-		svg.append("circle")
-			.attr("id", "center")
-			.attr("cx", dimension/2)
+        svg.append("circle")
+            .style("fill", "url(#eclipse-gradient")
+            .attr("id", "eclipse")
+			.attr("cx", dimension+100)
 			.attr("cy", dimension/2)
-			.attr("r", 68)
-			.attr("fill", "pink")
-			.attr("stroke", "black")
-			.attr("stroke-width", "1");
+			.attr("r", dimension/5 - 5);
 
-		$( "#center" ).click(function() {
-			var rect = $('#circle2');
 
-			if($('#circle2').css('background-color')=='#00cc00') {
-				$('#circle2').css('background-color', '#336699');
-			}
-			else {
-				$('#circle2').css('background-color', 'black');
-   			}
+		$( "#sun" ).click(async function() {
 
-        	rect.css('fill',"#ffff4d");
-			var rect = $('#circle1');
-        	rect.css('fill',"#ffff4d");
-			var rect = $('#circle3');
-        	rect.css('fill',"#ffff4d");
-			var rect = $('#circle4');
-        	rect.css('fill',"#ffff4d");
+			svg.select("#eclipse")
+                .attr("cx", dimension+100)
+                .attr("cy", dimension/2)
+				.transition()
+				.duration(4000)
+                .attr("cx", dimension/2)
+			    .attr("cy", dimension/2)
+                .transition()
+				.duration(5000)
+                .attr("cx", -dimension/5)
+			    .attr("cy", dimension/2)
 
-			d3.select("svg").on("click", function() {
-			rect
-			.transition()
-			.delay(1500)
-			.duration(1000)
-			.attr("points", cx1+","+cy1+" "+(cx1-8)+","+(cy1-14)+" "+(cx1-10)+","+(cy1-32)+" "+cx1+","+(cy1-42)+" "+(cx1+12)+","+(cy1-38)+" "+(cx1+12)+","+(cy1-18)+" "+cx1+","+cy1); 
-			)};
+            
+            svg.select("#sun")
+                .transition().duration(150).attr("cx", dimension/2.05).attr("cy", dimension/2.02)  
+                .transition().duration(150).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(150).attr("cx", dimension/1.95).attr("cy", dimension/1.99) 
+                .transition().duration(125).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(125).attr("cx", dimension/1.95).attr("cy", dimension/1.98)  
+                .transition().duration(125).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(125).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(125).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(100).attr("cx", dimension/1.95).attr("cy", dimension/1.98)  
+                .transition().duration(100).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(100).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(100).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/1.99) 
+                .transition().duration(75).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/1.99) 
+                .transition().duration(75).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(75).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/1.99)
+                .transition().duration(75).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(75).attr("cx", dimension/1.95).attr("cy", dimension/2) 
+                .transition().duration(50).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(50).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(50).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(50).attr("cx", dimension/1.95).attr("cy", dimension/1.97)  
+                .transition().duration(50).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(50).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(50).attr("cx", dimension/2.05).attr("cy", dimension/2.025)  
+                .transition().duration(50).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/1.99)  
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2.02)  
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/1.99) 
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/1.98)  
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/1.99) 
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/2)   
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2.01)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/1.99)
+                .transition().duration(25).attr("cx", dimension/2.05).attr("cy", dimension/2)  
+                .transition().duration(25).attr("cx", dimension/1.95).attr("cy", dimension/2) 
 
-			svg.append("circle")
-				.attr("id", "circle5")
-				.attr("cx", dimension/2.75)
-				.attr("cy", dimension/1.6)
-				.attr("r", 55)
-				.attr("fill", "#ffffcc")
-				.attr("z-index", 100);
+            svg.append("circle")
+            .style("fill", "url(#eclipse-gradient")
+            .attr("id", "eclipse")
+			.attr("cx", dimension+100)
+			.attr("cy", dimension/2)
+			.attr("r", dimension/5 - 5);
 
-			svg.append("circle")
-				.attr("id", "circle6")
-				.attr("cx", dimension/1.6)
-				.attr("cy", dimension/2.75)
-				.attr("r", 55)
-				.attr("fill", "#ffffcc")
-				.attr("z-index", 100);
-			
-			svg.append("circle")
-				.attr("id", "circle7")
-				.attr("cx", dimension/2.75)
-				.attr("cy", dimension/1.6)
-				.attr("r", 55)
-				.attr("fill", "#ffffcc")
-				.attr("z-index", 100);
+            svg
+                .transition()
+                .duration(5000)
+                .style('background-color', '#424242')
+                .transition()
+                .duration(3500)
+                .style('background-color', '#d9d9d9');
 
-			svg.append("circle")
-				.attr("id", "circle7")
-				.attr("cx", dimension/2.75)
-				.attr("cy", dimension/2.75)
-				.attr("r", 55)
-				.attr("fill", "#ffffcc")
-				.attr("z-index", 100);
-			
-			svg.append("circle")
-				.attr("id", "circle8")
-				.attr("cx", dimension/1.6)
-				.attr("cy", dimension/1.6)
-				.attr("r", 55)
-				.attr("fill", "#ffffcc")
-				.attr("z-index", 100);
+            svg.select("#eclipse")
+                .attr("cx", dimension+100)
+                .attr("cy", dimension/2)
 
-			svg.append("circle")
-				.attr("id", "center")
-				.attr("cx", dimension/2)
-				.attr("cy", dimension/2)
-				.attr("r", 68)
-				.attr("fill", "pink")
-				.attr("stroke", "black")
-				.attr("stroke-width", "1")
-				// .transform("translate", "width/2");
-			
-			var seeds = svg.selectAll("circle");
-			seeds.attr("transform", "translate(" + [dimension / 4, dimension / 4] + ")rotate(" + 50 / 100 % 360 + ")");
-			console.log("transforming");
 		});
 
 
